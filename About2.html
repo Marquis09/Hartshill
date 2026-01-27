@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standards & Policies | Portfolio Prototype</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Hartshill/Styles.css">
+    <style>
+        /* --- BRAND COLORS & NAV --- */
+        :root { --primary: #3d5a44; --accent: #c4a47c; --bg-light: #fdfdfd; }
+        
+        .nav-logo-icon { 
+            height: 32px; 
+            width: auto;
+            vertical-align: middle; 
+            margin-right: 12px; 
+            display: inline-block;
+            filter: brightness(0); 
+        }
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            font-weight: 800; 
+            font-size: 1.4rem; 
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+        .logo span { color: var(--primary); margin-left: 6px; }
+
+        /* --- MODERN HERO --- */
+        .policy-hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), 
+                        url('../Hartshill/images/index/image.jpg');
+            background-size: cover; background-position: center; text-align: center;
+        }
+
+        /* --- TWO-COLUMN BENTO GRID --- */
+        .policy-container {
+            max-width: 1200px;
+            margin: -60px auto 100px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.2fr 1.8fr; 
+            gap: 40px;
+        }
+
+        .policy-card {
+            background: white;
+            border-radius: 32px;
+            padding: 3.5rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+            height: fit-content;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(61, 90, 68, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1.5rem; color: #1a1a1a; letter-spacing: -1px; }
+        .full-text-p { font-size: 1rem; line-height: 1.8; color: #444; margin-bottom: 1.5rem; }
+
+        /* --- PLUS/MINUS ACCORDION --- */
+        .accordion-item {
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 5px;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: none;
+            border: none;
+            text-align: left;
+            color: #1a1a1a;
+            font-family: inherit;
+        }
+
+        .symbol {
+            width: 32px;
+            height: 32px;
+            background: #f8f8f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .symbol {
+            background: var(--primary);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        .symbol::after { content: '+'; font-weight: 400; }
+        .accordion-item.active .symbol::after { content: '−'; }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 1200px; 
+            padding-bottom: 30px;
+            opacity: 1;
+        }
+
+        /* --- FOOTER STYLING --- */
+        .footer-logo {
+            height: 150px; 
+            width: auto;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .fiec-tag-small {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        @media (max-width: 1024px) {
+            .policy-container { grid-template-columns: 1fr; margin-top: -40px; }
+            .policy-card { padding: 2.5rem; }
+            .footer-container { flex-direction: column; text-align: center; gap: 20px; }
+            .footer-right-content { text-align: center !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../Hartshill/index.html" class="logo">
+            <img src="../Hartshill/images/logo/cross.svg" alt="HBC Icon" class="nav-logo-icon">
+            HARTSHILL <span>BIBLE CHURCH</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../Hartshill/index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="../Hartshill/About1.html" class="dropbtn">About Us <span class="chevron">▾</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="../Hartshill/About1.html">Our Story & Beliefs</a></li>
+                    <li><a href="../Hartshill/About2.html">Church Policies</a></li>
+                </ul>
+            </li>
+            <li><a href="../Hartshill/whatson.html">What's On</a></li>
+            <li><a href="../Hartshill/sermons.html">Sermons</a></li>
+            <li><a href="../Hartshill/contacts.html" class="btn-nav">Plan Your Visit</a></li>
+        </ul>
+    </nav>
+
+
+    <header class="policy-hero">
+        <div class="hero-content">
+            <span class="badge" style="background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">Trust & Safety</span>
+            <h1 style="font-size: 3.5rem; margin-top: 15px;">Organization <span>Policies</span></h1>
+            <p style="max-width: 600px; margin: 20px auto; color: #555;">Detailed commitments to safeguarding and our operational standards.</p>
+        </div>
+    </header>
+
+    <div class="policy-container">
+        
+        <section class="policy-card">
+            <span class="section-tag">Safeguarding</span>
+            <h2>Care for Everyone</h2>
+            <p class="full-text-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. At our organization, we are committed to safeguarding all participants through rigorous background checks and strict operational ratios.</p>
+            <p class="full-text-p">All staff and volunteers working with sensitive groups undergo regular vetting via authorized services to ensure a safe and supportive environment for all visitors and members.</p>
+            
+            <h3 style="margin-top: 2rem; font-size: 1.2rem; font-weight: 700;">Reporting & Training</h3>
+            <p class="full-text-p" style="font-size: 0.95rem;">Team leaders commit to reporting any concerns to our designated safety lead. Training is provided biennially by certified industry professionals.</p>
+            
+            <div style="margin-top: 2rem; padding: 20px; border-radius: 16px; background: #f9f9f9; border: 1px dashed #ddd;">
+                <p style="margin: 0; font-size: 0.9rem; color: #666;">Designated Safety Lead:</p>
+                <p style="margin: 5px 0 0; font-weight: 800; color: var(--primary);">Jane Doe</p>
+                <a href="#" style="display: inline-block; margin-top: 10px; font-size: 0.85rem; font-weight: 700; color: var(--primary); text-decoration: underline;">Open Contact Form →</a>
+            </div>
+        </section>
+
+        <section class="policy-card">
+            <span class="section-tag">Member Standards</span>
+            <h2>Community Covenant</h2>
+            <p class="full-text-p">This document serves as a summary of the shared responsibilities and professional ethics involved in being a member of our community.</p>
+
+            <div class="covenant-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">Shared Commitment <span class="symbol"></span></button>
+                    <div class="accordion-content">
+                        <p class="full-text-p">As an expression of our sincere desire to collaborate effectively, we pledge ourselves to maintain high standards of professional conduct and mutual respect within this organization.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Professional Integrity <span class="symbol"></span></button>
+                    <div class="accordion-content">
+                        <p class="full-text-p">We believe that integrity is vital. We promise to watch over our collective reputation and discourage any conduct that does not align with our core mission and values.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Collaboration & Communication <span class="symbol"></span></button>
+                    <div class="accordion-content">
+                        <p class="full-text-p">We acknowledge the importance of transparent communication and regular feedback. Our concern is to support the growth of every individual within the collective framework.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Conflict Resolution <span class="symbol"></span></button>
+                    <div class="accordion-content">
+                        <p class="full-text-p">We resolve to maintain unity by following internal mediation protocols to address grievances. We aim to solve all internal disputes with gentleness, patience, and professional courtesy.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Resource Stewardship <span class="symbol"></span></button>
+                    <div class="accordion-content">
+                        <p class="full-text-p">Members recognize the responsibility of supporting the organization through participation, stewardship of shared tools, and adhering to financial transparency policies.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem; font-style: italic; color: #888; font-size: 0.9rem; text-align: center;">
+                "Dedicated to excellence, integrity, and the shared success of our community."
+            </p>
+        </section>
+    </div>
+
+   <footer class="modern-footer">
+        <div class="footer-container">
+            <img src="../Hartshill/images/logo/logo.svg" alt="Logo" class="footer-logo">
+            <div class="footer-right-content" style="text-align: right;">
+                <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">Innovating Design and User Experience</div>
+                <div style="color: #666; font-size: 0.85rem;">© 2026 Lorem Ipsum Org | Prototype V2.0</div>
+                <div class="fiec-tag-small" style="margin-top: 10px;">Portfolio Project Component</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

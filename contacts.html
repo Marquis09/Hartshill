@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Portfolio Prototype</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Hartshill/Styles.css">
+    <style>
+        /* --- LOGO SIZE & COLOR FIX --- */
+        .nav-logo-icon { 
+            height: 32px; 
+            width: auto;
+            vertical-align: middle; 
+            margin-right: 12px; 
+            display: inline-block;
+            filter: brightness(0); 
+        }
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            font-weight: 800; 
+            font-size: 1.4rem; 
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+        .logo span { color: var(--primary); margin-left: 6px; }
+
+        /* --- HERO WITH FADED BACKGROUND IMAGE --- */
+        .about-hero-modern {
+            padding: 160px 0 100px;
+            background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 1)), 
+                        url('../Hartshill/images/index/image.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            text-align: center;
+        }
+
+        .badge { background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+
+        /* --- FOOTER LOGO SIZE --- */
+        .footer-logo {
+            height: 150px; 
+            width: auto;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .fiec-tag-small {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* Leaders Grid Styling */
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+        .leader-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        /* Form Styling */
+        .modern-form-compact input, 
+        .modern-form-compact textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            background: #fdfdfd;
+            font-family: inherit;
+            margin-top: 5px;
+        }
+        .form-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: block;
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .leaders-grid { grid-template-columns: 1fr; }
+            .form-row-compact { grid-template-columns: 1fr !important; }
+            .footer-container { flex-direction: column; text-align: center; gap: 20px; }
+            .footer-right-content { text-align: center !important; }
+        }
+    </style>
+</head>
+<body>
+
+   <nav class="navbar">
+        <a href="../Hartshill/index.html" class="logo">
+            <img src="../Hartshill/images/logo/cross.svg" alt="HBC Icon" class="nav-logo-icon">
+            HARTSHILL <span>BIBLE CHURCH</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../Hartshill/index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="../Hartshill/About1.html" class="dropbtn">About Us <span class="chevron">▾</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="../Hartshill/About1.html">Our Story & Beliefs</a></li>
+                    <li><a href="../Hartshill/About2.html">Church Policies</a></li>
+                </ul>
+            </li>
+            <li><a href="../Hartshill/whatson.html">What's On</a></li>
+            <li><a href="../Hartshill/sermons.html">Sermons</a></li>
+            <li><a href="../Hartshill/contacts.html" class="btn-nav">Plan Your Visit</a></li>
+        </ul>
+    </nav>
+
+    <header class="about-hero-modern">
+        <div class="hero-content hero-text">
+            <span class="badge">Inquiry</span>
+            <h1 style="font-size: 3.5rem; margin-top: 15px;">Connect with <span>the Hub</span></h1>
+            <p style="font-size: 1.2rem; color: #444; font-weight: 500;">We're here to answer your questions.</p>
+        </div>
+    </header>
+
+    <section class="grid-section bg-sage">
+        <div class="modern-bento">
+            
+            <div class="bento-card wide">
+                <span class="tag-gold">The Community</span>
+                <h3 style="margin-bottom: 1rem; font-size: 2rem;">Lorem Ipsum Hub</h3>
+                <p style="font-size: 1rem; color: #666; line-height: 1.6; margin-bottom: 2rem;">
+                    We are a collaborative network of professionals and creators dedicated to innovation. Our team meets weekly at our designated tech-sports complex to share insights and build together.
+                </p>
+                
+                <div class="leaders-grid" style="border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1.5rem;">
+                    <div class="leader-item">
+                        <small class="form-label">PROJECT DIRECTOR</small>
+                        <p style="font-weight: 600; margin-top: 5px;">Alex Rivera</p>
+                    </div>
+                    <div class="leader-item">
+                        <small class="form-label">OPERATIONS LEAD</small>
+                        <p style="font-weight: 600; margin-top: 5px;">Jordan Smith</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card featured-green tall" style="background: var(--primary); color: white; text-align: center; justify-content: center;">
+                <span class="tag-white" style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;">Location</span>
+                <h2 style="font-size: 2.5rem; color: white; margin: 0.5rem 0;">Workshops</h2>
+                
+                <div style="background: white; padding: 1.5rem; border-radius: 20px; margin: 1rem 0;">
+                    <h4 style="color: var(--primary); margin-bottom: 4px; font-weight: 800;">Tuesdays @ 10:30am</h4>
+                    <p style="color: #666; font-size: 0.85rem; line-height: 1.4;">
+                        The Innovation Center,<br>
+                        District 4, SJJ JJY
+                    </p>
+                    <a href="#" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none; display: block; margin-top: 10px; font-size: 0.9rem;">Get Directions →</a>
+                </div>
+                <p style="font-size: 0.8rem; opacity: 0.8;">Primary Entrance, Suite B</p>
+            </div>
+
+            <div class="bento-card wide" style="background: white;">
+                <span class="tag-gold">Message Us</span>
+                <h3 style="margin-bottom: 0.5rem;">How can we help?</h3>
+                <p style="margin-bottom: 1.5rem; color: #666; font-size: 0.9rem;">Fill out the form below and our team will respond within 24 hours.</p>
+                
+                <form class="modern-form-compact">
+                    <div class="form-row-compact" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <label class="form-label">Name *</label>
+                            <input type="text" placeholder="Your name" required>
+                        </div>
+                        <div>
+                            <label class="form-label">Email *</label>
+                            <input type="email" placeholder="Email address" required>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label class="form-label">Topic of Interest</label>
+                        <textarea rows="3" placeholder="Tell us more about your inquiry..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-nav" style="background: var(--primary); color: white !important; border: none; cursor: pointer; width: 100%; font-size: 0.9rem; padding: 12px; border-radius: 30px; font-weight: 700;">Submit Inquiry</button>
+                </form>
+            </div>
+
+            <div class="bento-card" style="background: var(--accent); color: white; justify-content: center; text-align: center;">
+                <h3 style="color: white; margin-bottom: 0.5rem;">Full Schedule</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 1.5rem; opacity: 0.9;">Explore our seasonal events.</p>
+                <a href="#" style="background: white; color: var(--accent); padding: 12px 24px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 0.85rem; display: inline-block;">View Calendar</a>
+            </div>
+
+        </div>
+    </section>
+
+   <footer class="modern-footer">
+        <div class="footer-container">
+            <img src="../Hartshill/images/logo/logo.svg" alt="Logo" class="footer-logo">
+            <div class="footer-right-content" style="text-align: right;">
+                <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">Innovating Design and User Experience</div>
+                <div style="color: #666; font-size: 0.85rem;">© 2026 Lorem Ipsum Org | Prototype V2.0</div>
+                <div class="fiec-tag-small" style="margin-top: 10px;">Portfolio Project Component</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -7,9 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Hartshill/Styles.css">
     <style>
-        :root { --primary: #3d5a44; --accent: #c4a47c; }
-
-        /* --- NAV LOGO --- */
+        /* --- NAV LOGO (MATCHED SIZE & BLACK CROSS) --- */
         .nav-logo-icon { 
             height: 32px; 
             width: auto;
@@ -28,9 +26,9 @@
         }
         .logo span { color: var(--primary); margin-left: 6px; }
 
-        /* --- HERO --- */
+        /* --- HERO WITH FADED BACKGROUND IMAGE --- */
         .about-hero-modern {
-            padding: clamp(100px, 15vh, 160px) 20px 100px;
+            padding: 160px 0 100px;
             background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 1)), 
                         url('../Hartshill/images/index/image.jpg'); 
             background-size: cover; 
@@ -40,37 +38,14 @@
 
         .badge { background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
         
-        /* --- BENTO GRID --- */
-        .modern-bento {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: -40px auto 100px;
-            padding: 0 20px;
-        }
+        /* Bento Card Styling */
+        .bento-card h3 { margin-bottom: 1rem; }
 
-        .bento-card {
-            background: white;
-            border-radius: 28px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
-        }
-
-        .bento-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
-
-        @media (min-width: 1025px) {
-            .bento-card.wide { grid-column: span 2; }
-        }
-
-        .tag-gold { color: var(--accent); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px; }
-
-        /* --- FOOTER --- */
+        /* --- FOOTER LOGO SIZE (ADJUST HERE) --- */
         .footer-logo {
-            height: clamp(80px, 10vw, 150px); 
+            height: 150px; /* This makes the footer logo smaller */
             width: auto;
+            opacity: 1.8;
         }
 
         .footer-container {
@@ -79,15 +54,20 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 40px 20px;
+        }
+
+        .fiec-tag-small {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--primary);
         }
 
         @media (max-width: 768px) {
-            .modern-bento { grid-template-columns: 1fr; margin-top: -20px; }
-            .footer-container { flex-direction: column; text-align: center; gap: 30px; }
+            .footer-container { flex-direction: column; text-align: center; gap: 20px; }
             .footer-right-content { text-align: center !important; }
-            .hero-content h1 { font-size: 2.5rem !important; }
-            .bento-card.featured-green { flex-direction: column !important; text-align: center; }
         }
     </style>
 </head>
@@ -116,49 +96,49 @@
     <header class="about-hero-modern">
         <div class="hero-content hero-text">
             <span class="badge">Bible Teaching</span>
-            <h1 style="margin-top: 15px;">Listen to <span>Sermons</span></h1>
-            <p style="font-size: 1.1rem; color: #555; max-width: 600px; margin: 15px auto;">Listen back to the audio from our recent gatherings and explore our teaching library.</p>
+            <h1 style="font-size: 3.5rem; margin-top: 15px;">Listen to <span>Sermons</span></h1>
+            <p style="font-size: 1.2rem; color: #444; font-weight: 500;">Listen back to the audio from our recent gatherings.</p>
         </div>
     </header>
 
-    <section class="grid-section">
+    <section class="grid-section bg-sage">
         <div class="modern-bento">
             
             <div class="bento-card wide" style="background: #6a8dbd; color: white;">
                 <span class="tag-white" style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;">Latest Teaching</span>
-                <h3 style="color: white; margin-top: 15px; font-size: 1.8rem;">Recent Audio</h3>
+                <h3 style="color: white; margin-top: 15px;">Recent Audio</h3>
                 
-                <div style="background: white; border-radius: 16px; overflow: hidden; margin: 1.5rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/your-podcast-id" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <div style="background: white; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; margin-top: 1rem;">
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/YOUR_SHOW_ID" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 </div>
                 
-                <p style="font-size: 0.95rem; opacity: 0.95; line-height: 1.6;">
+                <p style="font-size: 0.9rem; opacity: 0.9; line-height: 1.5;">
                     Click on the <strong>Spotify logo</strong> within the player above to explore our full library of past recordings and sermon series.
                 </p>
             </div>
 
             <div class="bento-card">
                 <span class="tag-gold">Our Approach</span>
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">God's Word</h3>
-                <p style="font-size: 0.95rem; color: #666; line-height: 1.8;">
+                <h3>God's Word</h3>
+                <p style="font-size: 0.95rem; color: #666; line-height: 1.7;">
                     The Bible is central to all we do. We aim to teach in a way that is clear, faithful, and impacts our everyday lives.
                 </p>
             </div>
 
             <div class="bento-card">
                 <span class="tag-gold">Connection</span>
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Beyond the Service</h3>
-                <p style="font-size: 0.95rem; color: #666; line-height: 1.8;">
+                <h3>Beyond the Service</h3>
+                <p style="font-size: 0.95rem; color: #666; line-height: 1.7;">
                     We don't finish with the closing song. Stay for a cup of tea, a coffee, and a chat about what you've heard.
                 </p>
             </div>
 
             <div class="bento-card wide featured-green" style="background: var(--primary); color: white; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 2rem;">
                 <div style="flex: 1;">
-                    <h3 style="color: white; margin-bottom: 0.5rem; font-size: 1.6rem;">Have questions?</h3>
-                    <p style="opacity: 0.9; font-size: 1rem;">There is always someone available who would love to listen or answer questions about our teaching.</p>
+                    <h3 style="color: white; margin-bottom: 0.5rem;">Have questions?</h3>
+                    <p style="opacity: 0.9;">There is always someone available who would love to listen or answer questions about our teaching.</p>
                 </div>
-                <a href="../Hartshill/whatson.html" class="btn-nav" style="background: white; color: var(--primary) !important; white-space: nowrap; padding: 14px 28px; border-radius: 30px; text-decoration: none; font-weight: 700; transition: transform 0.2s ease;">Find out what's on</a>
+                <a href="../Hartshill/whatson.html" class="btn-nav" style="background: white; color: var(--primary) !important; white-space: nowrap; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 700;">Find out what's on</a>
             </div>
 
         </div>

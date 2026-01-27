@@ -30,7 +30,7 @@
 
         /* --- MODERN HERO --- */
         .policy-hero {
-            padding: clamp(100px, 15vh, 160px) 20px 100px;
+            padding: 160px 0 100px;
             background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), 
                         url('../Hartshill/images/index/image.jpg');
             background-size: cover; background-position: center; text-align: center;
@@ -49,7 +49,7 @@
         .policy-card {
             background: white;
             border-radius: 32px;
-            padding: clamp(1.5rem, 5vw, 3.5rem);
+            padding: 3.5rem;
             box-shadow: 0 30px 60px rgba(0,0,0,0.05);
             border: 1px solid rgba(0,0,0,0.03);
             height: fit-content;
@@ -68,7 +68,7 @@
             margin-bottom: 20px;
         }
 
-        h2 { font-size: clamp(1.8rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: 1.5rem; color: #1a1a1a; letter-spacing: -1px; }
+        h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1.5rem; color: #1a1a1a; letter-spacing: -1px; }
         .full-text-p { font-size: 1rem; line-height: 1.8; color: #444; margin-bottom: 1.5rem; }
 
         /* --- PLUS/MINUS ACCORDION --- */
@@ -104,7 +104,6 @@
             font-size: 1.2rem;
             color: var(--primary);
             transition: all 0.3s ease;
-            flex-shrink: 0;
         }
 
         .accordion-item.active .symbol {
@@ -131,7 +130,7 @@
 
         /* --- FOOTER STYLING --- */
         .footer-logo {
-            height: clamp(80px, 10vw, 150px); 
+            height: 150px; 
             width: auto;
         }
 
@@ -153,13 +152,8 @@
         }
 
         @media (max-width: 1024px) {
-            .policy-container { 
-                grid-template-columns: 1fr; 
-                margin-top: -40px; 
-                gap: 24px;
-            }
-            .policy-card { padding: 2rem; }
-            .hero-content h1 { font-size: 2.5rem !important; }
+            .policy-container { grid-template-columns: 1fr; margin-top: -40px; }
+            .policy-card { padding: 2.5rem; }
             .footer-container { flex-direction: column; text-align: center; gap: 20px; }
             .footer-right-content { text-align: center !important; }
         }
@@ -191,7 +185,7 @@
     <header class="policy-hero">
         <div class="hero-content">
             <span class="badge" style="background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">Trust & Safety</span>
-            <h1 style="margin-top: 15px;">Organization <span>Policies</span></h1>
+            <h1 style="font-size: 3.5rem; margin-top: 15px;">Organization <span>Policies</span></h1>
             <p style="max-width: 600px; margin: 20px auto; color: #555;">Detailed commitments to safeguarding and our operational standards.</p>
         </div>
     </header>

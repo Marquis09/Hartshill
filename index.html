@@ -3,148 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hartshill Bible Church | UI Prototype</title>
+    <title>Project Prototype | UI Showcase</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Hartshill/Styles.css">
     <style>
-        /* ==========================================================================
-           1. CORE VARIABLES & RESET
-           ========================================================================== */
-        :root {
-            --primary: #2d5a27;      /* Forest Green */
-            --accent: #d4a373;       /* Earthy Gold */
-            --text: #1a1a1a;
-            --text-light: #666;
-            --bg: #ffffff;
-            --bg-alt: #f8f9f5;
-            --radius: 32px;
-            --container-padding: 10%;
+        /* --- NAV & LOGO --- */
+        .nav-logo-icon { 
+            height: 32px; 
+            width: auto;
+            vertical-align: middle; 
+            margin-right: 12px; 
+            display: inline-block;
+            filter: brightness(0); 
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--text);
-            background: var(--bg);
-            overflow-x: hidden;
-            line-height: 1.6;
+        /* --- BENTO & TILE ANIMATION --- */
+        .modern-bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        /* ==========================================================================
-           2. NAVIGATION (Fixes Dropdown Collision)
-           ========================================================================== */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem var(--container-padding);
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            position: sticky;
-            top: 0;
-            z-index: 2000;
-        }
-
-        .logo { font-weight: 800; font-size: 1.3rem; text-decoration: none; color: var(--text); display: flex; align-items: center; }
-        .logo span { color: var(--primary); opacity: 0.7; }
-        .nav-logo-icon { height: 32px; margin-right: 12px; filter: brightness(0); }
-
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.9rem; }
-
-        /* FIXED: Dropdown floats OVER the hero */
-        .dropdown { position: relative; }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
+        .bento-card {
+            height: 100%;
+            min-height: 320px;
+            padding: 0 !important;
+            overflow: hidden;
+            position: relative;
             background: white;
-            min-width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-radius: 15px;
-            padding: 10px 0;
-            list-style: none;
-            z-index: 3000;
+            border-radius: var(--radius);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-decoration: none;
         }
-        .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s ease; }
-        .dropdown-content li a { padding: 10px 20px; display: block; }
-        .btn-nav { background: var(--primary); color: white !important; padding: 0.7rem 1.6rem; border-radius: 100px; font-weight: 700; }
 
-        /* ==========================================================================
-           3. HERO & VIDEO (Restored Layout)
-           ========================================================================== */
-        .video-hero { position: relative; width: 100%; overflow: hidden; min-height: 80vh; background: #fff; }
-        .video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        .bg-video { width: 100%; height: 100%; object-fit: cover; }
-        .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(70deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 100%); z-index: 2; }
-
-        .hero-modern { display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 4rem var(--container-padding); gap: 4rem; position: relative; z-index: 3; }
-        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; letter-spacing: -2px; }
-        .hero-text span { color: var(--primary); }
-
-        .hero-visual { position: relative; }
-        .main-img { height: 450px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 40px; }
-        .float-card { position: absolute; bottom: 20px; left: -20px; background: white; padding: 1.5rem; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); display: flex; gap: 15px; align-items: center; }
-
-        /* ==========================================================================
-           4. BENTO GRID & LUMIA ANIMATION (The Fixed Section)
-           ========================================================================== */
-        .grid-section { padding: 80px var(--container-padding); background: var(--bg-alt); }
-        .modern-bento { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 320px; gap: 20px; max-width: 1200px; margin: 0 auto; }
-        
-        /* Grid Alignment Fixes */
-        .bento-column { display: flex; flex-direction: column; gap: 15px; height: 100%; }
         .bento-column.tall { grid-row: span 2; }
         .bento-column.wide { grid-column: span 2; }
+        .bento-column { display: flex; flex-direction: column; gap: 15px; }
 
-        .bento-card { flex: 1; position: relative; overflow: hidden; background: white; border-radius: var(--radius); transition: transform 0.3s ease; text-decoration: none; display: block; }
+        .bento-card:hover .tile-slider { animation-play-state: paused !important; }
         .bento-card:hover { transform: translateY(-5px); z-index: 10; }
 
-        /* The Animation Logic */
-        .tile-slider { position: absolute; width: 100%; height: 200%; top: 0; left: 0; }
+        .tile-slider {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 200%;
+            position: absolute;
+            top: 0; left: 0;
+            will-change: transform;
+        }
+
         @keyframes lumiaInterchange {
             0%, 40% { transform: translateY(0); }       
             50%, 90% { transform: translateY(-50%); }   
             100% { transform: translateY(0); }          
         }
+
         .bento-column:nth-child(1) .tile-slider { animation: lumiaInterchange 8s infinite; }
         .bento-column:nth-child(2) .tile-slider { animation: lumiaInterchange 11s infinite; animation-delay: 2s; }
         .bento-column:nth-child(3) .tile-slider { animation: lumiaInterchange 9s infinite; animation-delay: 1s; }
         .bento-column:nth-child(4) .tile-slider { animation: lumiaInterchange 10s infinite; animation-delay: 3s; }
 
-        .tile-face { height: 50%; width: 100%; padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; background-size: cover; background-position: center; position: relative; }
-        .tile-face::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(transparent 30%, rgba(0,0,0,0.7) 100%); z-index: 1; }
-        .face-front h3 { color: white; position: relative; z-index: 2; font-size: 1.5rem; }
-        .face-back { background: var(--primary); color: white; justify-content: center; align-items: center; text-align: center; }
-        .face-back h3, .face-back p { position: relative; z-index: 2; }
+        .tile-face {
+            height: 50%;
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; 
+            box-sizing: border-box;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
 
-        .tag-green { position: absolute; top: 25px; left: 25px; background: var(--primary); color: white; padding: 6px 14px; border-radius: 100px; font-size: 0.7rem; font-weight: 800; z-index: 3; }
-        .btn-whats-on { align-self: flex-start; padding: 10px 24px; background: white; color: var(--primary); border-radius: 100px; font-weight: 700; text-decoration: none; border: 1px solid rgba(0,0,0,0.05); }
+        .tile-face::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(transparent 30%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+        }
 
-        /* ==========================================================================
-           5. FOOTER & MISC
-           ========================================================================== */
-        .modern-footer { background: #1a1a1a; padding: 80px var(--container-padding) 40px; color: white; }
-        .footer-logo { height: 100px; filter: brightness(0) invert(1); margin-bottom: 20px; }
-        
-        .reveal-card { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .face-front h3 { color: white; margin: 0; z-index: 2; position: relative; font-size: 1.5rem; }
+
+        .face-back { 
+            background: var(--primary); 
+            color: white; 
+            justify-content: center; 
+        }
+        .face-back::before { display: none; } 
+        .face-back h3, .face-back p { z-index: 2; position: relative; margin: 0; }
+        .face-back p { margin-top: 10px; font-size: 0.85rem; line-height: 1.4; opacity: 0.9; }
+
+        /* --- BUTTONS & TAGS --- */
+        .btn-whats-on {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 24px;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .btn-whats-on:hover { transform: scale(1.05); background: var(--bg-alt); }
+
+        .tag-green {
+            position: absolute;
+            top: 25px; left: 25px;
+            background: var(--primary);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 3;
+            color: white;
+        }
+
+        .reveal-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
         .reveal-card.active { opacity: 1; transform: translateY(0); }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .footer-logo {
+            height: 100px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+        .footer-info-block h4 { color: white !important; opacity: 0.8; }
+
+        @media (max-width: 900px) {
+            .modern-bento { grid-template-columns: 1fr; }
+            .bento-column.wide { grid-column: span 1; }
+        }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="../Hartshill/index.html" class="logo">
+        <a href="#" class="logo" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
             <img src="../Hartshill/images/logo/cross.svg" alt="Icon" class="nav-logo-icon">
             Hartshill <span>Biblechurch</span>
         </a>
-        <ul class="nav-links">
+          <ul class="nav-links">
             <li><a href="../Hartshill/index.html">Home</a></li>
             <li class="dropdown">
-                <a href="#" class="dropbtn">About Us ▾</a>
+                <a href="../Hartshill/About1.html" class="dropbtn">About Us <span class="chevron">▾</span></a>
                 <ul class="dropdown-content">
                     <li><a href="../Hartshill/About1.html">Our Story & Beliefs</a></li>
                     <li><a href="../Hartshill/About2.html">Church Policies</a></li>
@@ -161,113 +178,148 @@
             <video autoplay muted loop playsinline class="bg-video">
                 <source src="../Hartshill/images/index/back.mp4" type="video/mp4">
             </video>
-            <div class="video-overlay"></div>
+            <div class="video-overlay" style="background: linear-gradient(70deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 100%);"></div>
         </div>
-        <div class="hero-modern">
+        <div class="hero-modern video-content">
             <div class="hero-text">
-                <h1>Hartshill Bible Church - Teaching <span>GOD'S</span> Word</h1>
-                <p>Equipping the community with truth through modern interaction and faithful teaching.</p>
-                <div style="margin-top: 2rem; display: flex; gap: 15px;">
+                <span class="badge">Community Prototype</span>
+                <h1 style="color: #1a1a1a;">Hartshill Bible Church -Teaching <span>GOD'S</span> Word</h1>
+                <p style="color: #333; font-weight: 600; max-width: 500px;">Adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                <div class="hero-actions" style="margin-top: 2rem;">
                     <a href="#explore" class="btn-nav">Explore More</a>
+                    <a href="#" style="margin-left: 20px; color: var(--primary); font-weight: 700; text-decoration: none;">View Story →</a>
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="main-img">
-                    <div class="float-card">
-                        <span>📍</span>
-                        <div><strong>Service 10:30am</strong><br><small>The Willows Sports Hall</small></div>
+                <div class="main-img" style="background: rgba(255, 255, 255, 0.15); height: 450px; width: 95%; backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 40px; position: relative;">
+                    <div class="float-card" style="box-shadow: 0 25px 50px rgba(0,0,0,0.1); background: white; border-radius: 20px; position: absolute; bottom: -15px; left: -30px; padding: 1.2rem 2.2rem; display: flex; gap: 15px;">
+                        <span class="icon" style="color: var(--primary);">📍</span>
+                        <div style="text-align: left;">
+                            <strong style="color: #1a1a1a; display: block;">Lorem Ipsum 10:30am</strong>
+                            <small style="color: #666;">Consectetur Adipiscing Place</small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    
+    <section class="grid-section bg-sage" id="explore">
+        <div class="section-header-modern">
+            <span class="sub-label">Interface Logic</span>
+            <h2>Bento Grid Interaction Design</h2>
+        </div>
 
-    <section class="grid-section" id="explore">
         <div class="modern-bento">
             <div class="bento-column tall">
                 <a href="#" class="bento-card reveal-card">
                     <div class="tile-slider">
                         <div class="tile-face face-front" style="background-image: url('../Hartshill/images/index/kids.png');">
-                            <span class="tag-green">Children</span>
-                            <h3>Sunday Club</h3>
+                            <span class="tag-green">Category A</span>
+                            <h3>Lorem Ipsum</h3>
                         </div>
                         <div class="tile-face face-back">
-                            <h3>Sunday Club</h3>
-                            <p>Teaching the next generation.</p>
+                            <h3>Lorem Ipsum</h3>
+                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <br>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                         </div>
                     </div>
                 </a>
-                <a href="#" class="btn-whats-on">Learn More →</a>
+                <div class="external-cta-wrap">
+                    <a href="#" class="btn-whats-on">Action Trigger →</a>
+                </div>
             </div>
 
             <div class="bento-column wide">
                 <a href="#" class="bento-card reveal-card">
                     <div class="tile-slider">
                         <div class="tile-face face-front" style="background-image: url('../Hartshill/images/index/students.png');">
-                            <span class="tag-green">Students</span>
-                            <h3>Bible Study</h3>
+                            <span class="tag-green">Category B</span>
+                            <h3>Dolor Sit Amet</h3>
                         </div>
                         <div class="tile-face face-back">
-                            <h3>Bible Study</h3>
-                            <p>Deep dives into scripture.</p>
+                            <h3>Dolor Sit Amet</h3>
+                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <br>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
                         </div>
                     </div>
                 </a>
-                <a href="#" class="btn-whats-on">View Schedule →</a>
+                <div class="external-cta-wrap">
+                    <a href="#" class="btn-whats-on">Action Trigger →</a>
+                </div>
             </div>
 
             <div class="bento-column">
                 <a href="#" class="bento-card reveal-card">
                     <div class="tile-slider">
                         <div class="tile-face face-front" style="background-image: url('../Hartshill/images/index/prayer.png');">
-                            <h3>Prayer</h3>
+                            <h3>Consectetur</h3>
                         </div>
                         <div class="tile-face face-back">
-                            <h3>Prayer</h3>
-                            <p>Community intercession.</p>
+                            <h3>Consectetur</h3>
+                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
                         </div>
                     </div>
                 </a>
-                <a href="#" class="btn-whats-on">Join Us →</a>
+                <div class="external-cta-wrap">
+                    <a href="#" class="btn-whats-on">Action Trigger →</a>
+                </div>
             </div>
 
             <div class="bento-column">
                 <a href="#" class="bento-card reveal-card">
                     <div class="tile-slider">
                         <div class="tile-face face-front" style="background-image: url('../Hartshill/images/index/community.png');">
-                            <h3>Lumia</h3>
+                            <h3>Adipiscing Elit</h3>
                         </div>
                         <div class="tile-face face-back">
-                            <h3>Lumia</h3>
-                            <p>Gathering together.</p>
+                            <h3>Adipiscing Elit</h3>
+                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam.</p>
                         </div>
                     </div>
                 </a>
-                <a href="#" class="btn-whats-on">Get Involved →</a>
+                <div class="external-cta-wrap">
+                    <a href="#" class="btn-whats-on">Action Trigger →</a>
+                </div>
             </div>
         </div>
     </section>
 
     <footer class="modern-footer">
-        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
-            <div>
-                <img src="../Hartshill/images/logo/logo.svg" class="footer-logo">
-                <h4>Hartshill Bible Church</h4>
-                <p style="color: #999; max-width: 300px;">Knowing Christ and making him known.</p>
+        <div class="footer-grid">
+            <div class="footer-left">
+                <img src="../Hartshill/images/logo/logo.svg" alt="Logo" class="footer-logo">
+                <h4 style="margin-bottom: 0.5rem; color: white !important;">Lorem Ipsum Organization</h4>
+                <p style="color: #999; font-size: 0.9rem; max-width: 320px;">A clean, modular UI prototype demonstrating Bento Grid architecture and Nokia Lumia-inspired interactions.</p>
             </div>
-            <div>
-                <h4>Location</h4>
-                <p style="color: #999;">The Willows Primary School, ST4 7JY</p>
+            
+            <div class="footer-info-block">
+                <h4>Primary Location</h4>
+                <p>123 Lorem Ipsum Street</p>
+                <p>Dolor City, ST1 1AA</p>
             </div>
+
+            <div class="footer-info-block">
+                <h4>Contact Details</h4>
+                <p>hello@placeholder-site.com</p>
+                <div style="margin-top: 10px; font-size: 0.7rem; color: white; opacity: 0.6; font-weight: 800; letter-spacing: 1px;">DESIGN PROTOTYPE V1.0</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #333; display: flex; justify-content: space-between; font-size: 0.7rem; color: #666;">
+            <span>© 2026 Marquis Orchard | UX Engineering Portfolio</span>
+            <span>Built with HTML/CSS & Bootstrap 5</span>
         </div>
     </footer>
 
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal-card').forEach(card => observer.observe(card));

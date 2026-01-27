@@ -23,7 +23,7 @@ body {
 }
 
 /* ==========================================================================
-   2. NAVIGATION (Sticky + Responsive)
+   2. NAVIGATION (Fixed Absolute Dropdown)
    ========================================================================== */
 .navbar {
     display: flex;
@@ -35,15 +35,15 @@ body {
     position: sticky;
     top: 0;
     z-index: 2000;
-    transition: 0.3s;
 }
 
 .logo { 
     font-weight: 800; 
-    letter-spacing: -1px; 
     font-size: 1.3rem; 
     text-decoration: none; 
     color: var(--text);
+    display: flex;
+    align-items: center;
 }
 .logo span { color: var(--primary); opacity: 0.7; }
 
@@ -59,9 +59,36 @@ body {
     color: var(--text); 
     font-weight: 600; 
     font-size: 0.9rem; 
-    transition: 0.3s; 
 }
-.nav-links a:hover { color: var(--primary); }
+
+/* FIX: Dropdown now floats OVER content instead of pushing it */
+.dropdown { position: relative; }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 220px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border-radius: 18px;
+    padding: 12px 0;
+    list-style: none;
+    z-index: 3000;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.dropdown-content li a {
+    padding: 10px 20px;
+    display: block;
+    width: 100%;
+}
+
+.dropdown:hover .dropdown-content { 
+    display: block; 
+    animation: fadeIn 0.3s ease; 
+}
 
 .btn-nav {
     background: var(--primary);
@@ -69,15 +96,13 @@ body {
     padding: 0.7rem 1.6rem;
     border-radius: 100px;
     font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-    text-decoration: none;
-    display: inline-block;
 }
 
 /* ==========================================================================
-   3. HERO SECTIONS
+   3. HERO SECTION (Alignment Fix)
    ========================================================================== */
+.video-hero { position: relative; width: 100%; overflow: hidden; }
+
 .hero-modern {
     display: grid; 
     grid-template-columns: 1fr 1fr;
@@ -88,151 +113,131 @@ body {
 }
 
 .hero-text h1 { 
-    font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font sizing */
+    font-size: clamp(2.5rem, 5vw, 4.5rem); 
     line-height: 1.1; 
-    margin: 1.5rem 0; 
     letter-spacing: -2px; 
+    margin-bottom: 1.5rem;
 }
 
-.about-hero-modern {
-    padding: 120px var(--container-padding) 60px; 
-    text-align: center;
-    background: linear-gradient(to bottom, var(--bg-alt), #ffffff);
+.hero-visual { display: flex; justify-content: center; position: relative; }
+
+.main-img {
+    width: 100%;
+    height: 450px;
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius);
 }
 
-.main-img { 
-    height: clamp(300px, 60vh, 600px); 
-    background-size: cover; 
-    background-position: center; 
-    border-radius: var(--radius); 
-    box-shadow: 0 40px 80px rgba(0,0,0,0.1); 
+/* Service Badge Fix */
+.float-card {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    z-index: 10;
 }
 
 /* ==========================================================================
-   4. BENTO GRID SYSTEM
+   4. BENTO GRID SYSTEM (Fixed Structural Integrity)
    ========================================================================== */
 .grid-section { padding: 80px var(--container-padding); }
 
 .modern-bento { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
-    grid-auto-rows: minmax(300px, auto); 
+    grid-auto-rows: 320px; /* Fixed height per 'unit' */
     gap: 1.5rem; 
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+.bento-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+}
+
+/* Grid Spanning Rules */
+.tall { grid-row: span 2; }
+.wide { grid-column: span 2; }
+
 .bento-card {
+    flex: 1; 
     background: white; 
     border-radius: var(--radius); 
-    padding: 2.5rem;
     position: relative; 
     overflow: hidden; 
     transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
     border: 1px solid rgba(0,0,0,0.05); 
-    display: flex; 
+    display: block;
+    text-decoration: none;
+    height: 100%;
+}
+
+/* FIX: Ensure the Tile Slider stays within the card */
+.tile-slider {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 200%; 
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tile-face {
+    height: 50%;
+    width: 100%;
+    padding: 2.5rem;
+    display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
 
-.tall { grid-row: span 2; }
-.wide { grid-column: span 2; }
+.tile-face::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(transparent 40%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
+}
 
-/* Bento Image Handling */
-.card-content-row { display: flex; gap: 2rem; align-items: center; height: 100%; }
-.text-side { flex: 1.2; }
-.img-side { 
-    flex: 0.8; 
-    height: 100%; 
-    min-height: 250px; 
-    border-radius: 20px; 
-    background-size: cover; 
-    background-position: center; 
+.tile-face h3 { 
+    color: white; 
+    position: relative; 
+    z-index: 2; 
+    font-size: 1.6rem;
+    font-weight: 800;
 }
 
 /* ==========================================================================
-   5. RESPONSIVE BREAKPOINTS (The "Magic" Section)
+   5. RESPONSIVE BREAKPOINTS
    ========================================================================== */
-
-/* --- Tablet / Medium Screens (1024px and below) --- */
 @media (max-width: 1024px) {
-    :root { --container-padding: 5%; }
-    
-    .nav-links { gap: 1.5rem; }
-    
-    .modern-bento {
-        grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns */
-    }
+    .modern-bento { grid-template-columns: repeat(2, 1fr); }
+    .wide { grid-column: span 2; }
 }
 
-/* --- Mobile / Small Screens (768px and below) --- */
 @media (max-width: 768px) {
-    .navbar {
-        padding: 1rem 5%;
-    }
-
-    /* Simple Mobile Menu Stack (Alternative to JS Hamburger) */
-    .nav-links {
-        display: none; /* Hide standard links */
-    }
-
-    .hero-modern {
-        grid-template-columns: 1fr; /* Stack Hero */
-        text-align: center;
-        padding-top: 2rem;
-        gap: 2rem;
-    }
-
-    .hero-text h1 {
-        font-size: 2.8rem;
-    }
-
-    .float-card {
-        position: relative;
-        left: 0;
-        bottom: 0;
-        margin: 20px auto;
-        width: fit-content;
-    }
-
-    /* Bento Mobile Reset */
-    .modern-bento {
-        grid-template-columns: 1fr; /* Stack everything vertically */
-    }
-
-    .wide, .tall {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-
-    .card-content-row {
-        flex-direction: column; /* Image over text */
-        text-align: center;
-    }
-
-    .img-side {
-        width: 100%;
-        min-height: 200px;
-    }
-
-    /* Forms */
-    .form-row, .form-row-compact, .leaders-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .modern-footer {
-        padding: 40px 5%;
-        text-align: center;
-    }
-
-    .footer-grid {
-        flex-direction: column;
-        gap: 2rem;
-        align-items: center;
-    }
+    .nav-links { display: none; } 
+    
+    .hero-modern { grid-template-columns: 1fr; text-align: center; }
+    
+    .modern-bento { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .wide, .tall { grid-column: span 1; grid-row: span 1; }
+    
+    .bento-card { min-height: 350px; }
+    .float-card { position: relative; left: 0; bottom: 0; margin-top: 20px; }
 }
-
-/* ==========================================================================
-   6. UTILITIES & ANIMATIONS
-   ========================================================================== */
-.dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s ease; }
 
 @keyframes fadeIn { 
     from { opacity: 0; transform: translateY(10px); } 

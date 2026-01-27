@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Hartshill/Styles.css">
     <style>
+        :root { --primary: #3d5a44; --accent: #c4a47c; }
+
         /* --- NAV LOGO --- */
         .nav-logo-icon { 
             height: 32px; 
@@ -28,7 +30,7 @@
 
         /* --- HERO WITH FADED BACKGROUND IMAGE --- */
         .about-hero-modern {
-            padding: 160px 0 100px;
+            padding: clamp(100px, 15vh, 160px) 0 100px;
             background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 1)), 
                         url('../Hartshill/images/index/image.jpg'); 
             background-size: cover; 
@@ -39,6 +41,30 @@
         .badge { background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
 
         /* Bento Grid Layout Fixes */
+        .modern-bento {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: -40px auto 100px;
+            padding: 0 20px;
+        }
+
+        .bento-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+
+        /* Desktop specific spans */
+        @media (min-width: 1025px) {
+            .bento-card.wide { grid-column: span 2; }
+            .bento-card.tall { grid-row: span 2; }
+        }
+
         .card-content-row { display: flex; gap: 30px; align-items: center; height: 100%; }
         .text-side { flex: 1.2; text-align: left; }
         .img-side { flex: 0.8; height: 100%; min-height: 200px; background-size: cover; background-position: center; border-radius: 16px; }
@@ -55,7 +81,7 @@
             padding: 40px 20px;
         }
         .footer-logo {
-            height: 150px; 
+            height: clamp(80px, 10vw, 150px); 
             width: auto;
         }
         .fiec-tag-small {
@@ -67,10 +93,12 @@
         }
 
         @media (max-width: 768px) {
-            .card-content-row { flex-direction: column; padding: 20px; }
-            .img-side { width: 100%; height: 150px; }
+            .modern-bento { grid-template-columns: 1fr; margin-top: -20px; }
+            .card-content-row { flex-direction: column; gap: 20px; }
+            .img-side { width: 100%; height: 180px; }
             .footer-container { flex-direction: column; text-align: center; gap: 20px; }
             .footer-right-content { text-align: center !important; }
+            .hero-content h1 { font-size: 2.5rem !important; }
         }
     </style>
 </head>
@@ -99,18 +127,18 @@
     <header class="about-hero-modern">
         <div class="hero-content hero-text">
             <span class="badge">Events</span>
-            <h1 style="font-size: 3.5rem; margin-top: 15px;">What’s on at <span>the Hub?</span></h1>
+            <h1 style="margin-top: 15px;">What’s on at <span>the Hub?</span></h1>
         </div>
     </header>
 
-    <section class="grid-section bg-sage">
+    <section class="grid-section">
         <div class="modern-bento">
             
             <div class="bento-card wide">
                 <div class="card-content-row">
                     <div class="text-side">
-                        <span class="tag-gold">Main Sessions</span>
-                        <h3>Sunday Keynotes:</h3>
+                        <span class="tag-gold" style="color: var(--accent); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Main Sessions</span>
+                        <h3 style="font-size: 1.5rem; margin: 10px 0;">Sunday Keynotes:</h3>
                         <p>Weekly sessions begin at 10:30am and run until approximately 12:00pm.</p>
                         <p>Explore specialized tracks for youth and industry professionals below.</p>
                     </div>
@@ -130,39 +158,38 @@
 
             <div class="bento-card">
                 <div class="card-img" style="background-image: url('../Hartshill/images/index/kids.png'); background-size: cover; height: 160px; border-radius: 12px; margin-bottom: 1.5rem;"></div>
-                <span class="tag-gold">Junior Track</span>
-                <h3>Youth Workshop</h3>
+                <span class="tag-gold" style="color: var(--accent); font-weight: 800; font-size: 0.7rem; text-transform: uppercase;">Junior Track</span>
+                <h3 style="margin: 10px 0;">Youth Workshop</h3>
                 <p style="font-size: 0.9rem; color: #666;">Engaging programs for younger family members running concurrently with main sessions.</p>
-                <p style="font-size: 0.9rem; color: #666;">Our curriculum focuses on creativity, collaborative play, and foundational logic skills.</p>
             </div>
 
             <div class="bento-card">
                 <div class="card-img" style="background-image: url('../Hartshill/images/index/students.jpg'); background-size: cover; height: 160px; border-radius: 12px; margin-bottom: 1.5rem;"></div>
-                <span class="tag-gold">Mentorship</span>
-                <h3>Student Program</h3>
-                <p style="font-size: 0.9rem; color: #666;">Connecting university students with local industry veterans for mentorship and career growth.</p>
-                <p style="font-size: 0.9rem; color: #666;">Regular social lunches are hosted to foster organic networking opportunities.</p>
+                <span class="tag-gold" style="color: var(--accent); font-weight: 800; font-size: 0.7rem; text-transform: uppercase;">Mentorship</span>
+                <h3 style="margin: 10px 0;">Student Program</h3>
+                <p style="font-size: 0.9rem; color: #666;">Connecting university students with local industry veterans for career growth.</p>
             </div>
 
             <div class="bento-card wide" style="background: white;">
-                <span class="tag-gold">Weekday Labs</span>
-                <h3>Weekly Schedule</h3>
-                <div class="policy-container" style="margin-top: 1rem;">
+                <span class="tag-gold" style="color: var(--accent); font-weight: 800; font-size: 0.7rem; text-transform: uppercase;">Weekday Labs</span>
+                <h3 style="margin: 10px 0;">Weekly Schedule</h3>
+                <div class="policy-container">
                     <div style="border-bottom: 1px solid #eee; padding: 15px 0;">
                         <strong>1st Tuesday:</strong> Strategic Outreach & Planning Committee at 7:30pm.
                     </div>
                     <div style="border-bottom: 1px solid #eee; padding: 15px 0;">
-                        <strong>Wednesdays:</strong> Bi-weekly virtual focus groups hosted via digital conferencing at 7:30pm.
+                        <strong>Wednesdays:</strong> Bi-weekly virtual focus groups at 7:30pm.
                     </div>
                     <div style="padding: 15px 0;">
-                        <strong>Thursdays:</strong> Deep-dive technical seminars and discussion groups at 7:00pm.
+                        <strong>Thursdays:</strong> Deep-dive technical seminars at 7:00pm.
                     </div>
                 </div>
             </div>
 
             <div class="bento-card" style="background: #f9f9f9; display: flex; flex-direction: column; justify-content: center; text-align: center;">
                 <h3>Get Involved</h3>
-                <a href="#" class="btn-nav" style="background: var(--primary); color: white !important; width: 100%; text-decoration: none; padding: 12px; border-radius: 30px; margin-top: 20px;">Contact Team</a>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Have questions about our schedule?</p>
+                <a href="#" class="btn-nav" style="background: var(--primary); color: white !important; width: 100%; text-decoration: none; padding: 12px; border-radius: 30px; display: block;">Contact Team</a>
             </div>
 
         </div>
